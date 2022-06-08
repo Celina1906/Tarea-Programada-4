@@ -1,0 +1,18 @@
+<h1>
+    SALARIO SEMANA
+    <form>
+        <select id = "salarioXSemana" name = "salarioXSemana" size = "15">
+            <% for (fila of datos) { %>
+                <option>
+                    <%= fila.Inicio + " | " + fila.Fin + " | " + fila.Monto + " | " +
+                    fila.Ordinarias + " | " + fila.Extra%>
+                </option>
+            <% } %>            
+        </select>
+        <div>
+            <button formaction = "regresarDeduccion" name = "regresarDeduccionesMes">
+                Regresar
+            </button>
+        </div>
+    </form>
+</h1>
