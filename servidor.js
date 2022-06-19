@@ -8,7 +8,7 @@ const based = new (require('rest-mssql-nodejs'))({
     user: "programa",
     password: "programa",
     server: "25.6.233.172",
-    database: "Tarea Programada 3",
+    database: "Tarea Programada 4",
     encrypt: true
 })
 
@@ -82,7 +82,6 @@ app.post('/deduccionesSem', (req, res) => {
 })
 
 app.post('/obtenerSalario', (req, res) => {
-    console.log("Entro");
     obtenerSalarioBruto(req.body.planillaSemanalListBox, res);
 })
 
@@ -156,6 +155,7 @@ function obtenerDeduccionesSemana (Fecha, res) {
         const resultado = await based.executeStoredProcedure('ObtenerDeduccionesEmpleado',
         null, {inIdEmpleado : IdEmpleado, inFecha : Fecha, outResult : 0});
         if (resultado != undefined) {
+            console.log(resultado.data);
             datosDeduccion = resultado.data[0];
             console.log(datosDeduccion);
             res.render('deduccionesSemana.ejs', {
@@ -169,7 +169,6 @@ function obtenerSalarioBruto (Fecha, res) {
         const resultado = await based.executeStoredProcedure('ObtenerSalarioBruto',
         null, {inFecha : Fecha, inIdEmpleado : IdEmpleado, outResult : 0});
         if (resultado != undefined) {
-            console.log(resultado)
             datosSalario = resultado.data[0];
             console.log(datosSalario);
             res.render('salarioBruto.ejs', {
